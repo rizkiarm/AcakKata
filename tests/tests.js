@@ -1,4 +1,5 @@
-words = ['aku','kamu','kita','bersama'];
+var words = ['aku','kamu','kita','bersama'];
+var i;
 
 QUnit.test( "Game init tests", function( assert ) {
 	AcakKata.init(words);
@@ -15,7 +16,7 @@ QUnit.test( "Set words tests", function( assert ) {
 });
 
 QUnit.test( "Generate question tests", function( assert ) {
-	question = AcakKata.generateQuestion();
+	var question = AcakKata.generateQuestion();
 	assert.ok( question.question, "Question is not null" );
   	assert.equal( words.indexOf(question.answer) > -1 , true, "Answer is in word list" );
 });
@@ -31,7 +32,7 @@ QUnit.test( "Scramble word tests", function( assert ) {
 
 QUnit.test( "Answer checker tests", function( assert ) {
 	AcakKata.init(words);
-	answer = AcakKata.settings.session.answer;
+	var answer = AcakKata.settings.session.answer;
   	assert.equal( AcakKata.isCorrectAnswer(answer), true, "Correct answer return true" );
   	assert.equal( AcakKata.isCorrectAnswer(answer+"a"), false, "Incorrect answer return false" );
 });

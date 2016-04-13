@@ -48,8 +48,8 @@ var AcakKata = {
 		@return: none
 	*/
 	bindUIActions: function() {
-		self = this;
-		ui = this.settings.ui;
+		var self = this;
+		var ui = this.settings.ui;
 		// On submit, the answer would be captured and checked.
 		// Respective callback function would be called inorder
 		// to give responds to the user
@@ -76,7 +76,7 @@ var AcakKata = {
 		@return: Object - answer and question
 	*/
 	generateQuestion: function() {
-		random_word = this.getRandomWord()
+		var random_word = this.getRandomWord()
 		return {
 			answer: random_word,
 			question: this.scramble(random_word),
@@ -89,7 +89,7 @@ var AcakKata = {
 		@return: string - random word
 	*/
 	getRandomWord: function() {
-		words = this.getWords();
+		var words = this.getWords();
 		return words[Math.floor(Math.random() * words.length)];
 	},
 
@@ -117,7 +117,7 @@ var AcakKata = {
 		@return: none
 	*/
 	correctAnswerCallback: function(){
-		session = this.settings.session;
+		var session = this.settings.session;
 		session.correct += 1;
 		$.notify('Correct!');
 	},
@@ -128,7 +128,7 @@ var AcakKata = {
 		@return: none
 	*/
 	wrongAnswerCallback: function(){
-		session = this.settings.session;
+		var session = this.settings.session;
 		session.wrong += 1;
 		$.notify('Wrong!');
 	},
@@ -139,9 +139,9 @@ var AcakKata = {
 		@return: none
 	*/
 	refreshGame: function(){
-		ui = this.settings.ui;
-		session = this.settings.session;
-		question = this.generateQuestion();
+		var ui = this.settings.ui;
+		var session = this.settings.session;
+		var question = this.generateQuestion();
 		session.question = question.question;
 		session.answer = question.answer;
 		ui.question.html(question.question);
@@ -189,7 +189,7 @@ var AcakKata = {
 		@return: list of string - list of failed to input string
 	*/
 	addWords: function(words){
-		fail = [];
+		var fail = [];
 		for(i in words){
 			if(typeof words[i] != "string"){
 				continue;
@@ -207,7 +207,7 @@ var AcakKata = {
 		@return: boolean
 	*/
 	addWord: function(word){
-		current_words = this.getWords();
+		var current_words = this.getWords();
 		if(current_words.indexOf(word) > -1){
 			return false;
 		}
