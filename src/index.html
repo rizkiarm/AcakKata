@@ -59,5 +59,16 @@
 		<script type="text/javascript" src="js/bootstrap-notify.min.js"></script>
 		<script type="text/javascript" src="js/shuffler.js"></script>
 		<script type="text/javascript" src="js/game.js"></script>
+		<script type="text/javascript">
+		$(document).ready(function(){
+			$.get('words.txt', function(data){
+				// Split data per line into array
+				var words = data.split("\n");
+
+				// Initiate Acak Kata game
+				AcakKata.init(words);
+			});			
+		});
+		</script>
 	</body>
 </html>

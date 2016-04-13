@@ -130,7 +130,7 @@ var AcakKata = {
 	wrongAnswerCallback: function(){
 		var session = this.settings.session;
 		session.wrong += 1;
-		$.notify('Wrong!');
+		$.notify('Wrong! correct answer: '+session.answer);
 	},
 
 	/*
@@ -215,6 +215,3 @@ var AcakKata = {
 		return true;
 	}
 }
-
-// Initiate Acak Kata game
-AcakKata.init(['aku','kamu','kita','bersama']);
