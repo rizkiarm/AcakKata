@@ -29,6 +29,7 @@ body {
 .floating {
     width: 100%;
     position: absolute;
+    z-index: 999;
 }
 h1 {
     font-size: 90px;
@@ -52,6 +53,13 @@ ul.score {
 }
 .brand {
     color: #7B7B7B;
-    font-size: 30px;
+    font-size: 35px;
     margin-bottom: 0px;
+}
+
+.clickable {
+    cursor: pointer;
+}
+.clickable:hover .label-primary {
+    background-color: #609BCE;
 }

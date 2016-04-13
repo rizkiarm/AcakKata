@@ -5,7 +5,7 @@ var AcakKata = {
 	*/
 	settings: {
 		session: {
-			scrambled: '',
+			question: '',
 			answer: '',
 			correct: 0,
 			wrong: 0,
@@ -35,6 +35,7 @@ var AcakKata = {
 		this.settings.ui.answer = $('#answer');		
 		this.settings.ui.correct = $('#correct');		
 		this.settings.ui.wrong = $('#wrong');	
+		this.settings.ui.refresh_button = $('#refresh-session');
 	},
 
 	/*
@@ -55,6 +56,11 @@ var AcakKata = {
 			}
 			self.refreshGame();
 			e.preventDefault();
+		});
+		ui.refresh_button.click(function(){
+			self.refreshSession();
+			self.refreshGame();
+			$.notify('Session Refreshed!');
 		});
 	},
 
@@ -144,7 +150,7 @@ var AcakKata = {
 	*/
 	refreshSession: function(){
 		this.settings.session = {
-			scrambled: '',
+			question: '',
 			answer: '',
 			correct: 0,
 			wrong: 0,

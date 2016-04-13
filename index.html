@@ -15,12 +15,12 @@
 		<link rel="stylesheet" href="css/style.css">
 	<head>
 	<body>
-		<div class="floating right">
+		<div class="floating">
 			<h1 class="brand">Acak <b>Kata</b></h1>
 			<ul class="score">
 				<li>
 					<h4>
-						<span class="label label-default">
+						<span class="label label-success">
 							<i class="glyphicon glyphicon-ok"></i>
 							<p id="correct">
 					</span>
@@ -28,11 +28,21 @@
 				</li>
 				<li>
 					<h4>
-						<span class="label label-default">
+						<span class="label label-danger">
 							<i class="glyphicon glyphicon-remove"></i>
 							<p id="wrong"></p>
 						</span>
 					</h4>
+				</li>
+				<li>
+					<a id="refresh-session" class="clickable">
+						<h4>
+							<span class="label label-primary">
+								<i class="glyphicon glyphicon-refresh"></i>
+								<p>Refresh</p>
+							</span>
+						</h4>
+					</a>
 				</li>
 			</ul>
 		</div>
