@@ -7,7 +7,7 @@ Usage
 To run this app, follow this instructions:
 
 1. Clone this repository
-2. Open the ``index.html`` file
+2. Open the ``index.html`` file located in src folder
 
 #####Wordlist
 To add more words, in your browser javascript console type
@@ -31,3 +31,8 @@ To refresh the game (generate new question), type
 ```
 AcakKata.refreshGame();
 ```
+Tests
+-----
+To run the tests, simply open the ``index.html`` inside tests folder.
+The automated tests will tests the app and return the tests report.
+The tests suite is created using QUnit.

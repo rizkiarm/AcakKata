@@ -17,17 +17,21 @@ var AcakKata = {
 	/*
 		Acak Kata init function responsible for initiating the game
 		@params: list of string - list of word used in the game
+		@return: none
 	*/
 	init: function(words = []) {
 		this.setWords(words);
 		this.registerUI();
 		this.bindUIActions();
+		this.refreshSession();
 		this.refreshGame();
 	},
 
 	/*
 		Function which register HTML Dom element into the Acak Kata system
 		for later use.
+		@params: none
+		@return: none
 	*/
 	registerUI: function() {
 		this.settings.ui.form = $('form');
@@ -40,6 +44,8 @@ var AcakKata = {
 
 	/*
 		Function which bind UI Actions.
+		@params: none
+		@return: none
 	*/
 	bindUIActions: function() {
 		self = this;
@@ -65,15 +71,8 @@ var AcakKata = {
 	},
 
 	/*
-		Function to load words to the settings.
-		@param: list of string - words to be loaded on the game
-	*/
-	loadWords: function(words) {
-		this.words = words
-	},
-
-	/*
 		Function to generate question.
+		@params: none
 		@return: Object - answer and question
 	*/
 	generateQuestion: function() {
@@ -114,6 +113,8 @@ var AcakKata = {
 
 	/*
 		Function to give user response on correct answer
+		@params: none
+		@return: none
 	*/
 	correctAnswerCallback: function(){
 		session = this.settings.session;
@@ -123,6 +124,8 @@ var AcakKata = {
 
 	/*
 		Function to give user response on incorrect answer
+		@params: none
+		@return: none
 	*/
 	wrongAnswerCallback: function(){
 		session = this.settings.session;
@@ -132,6 +135,8 @@ var AcakKata = {
 
 	/*
 		Function to refresh the current game
+		@params: none
+		@return: none
 	*/
 	refreshGame: function(){
 		ui = this.settings.ui;
@@ -147,6 +152,8 @@ var AcakKata = {
 
 	/*
 		Function to refresh the current game session
+		@params: none
+		@return: none
 	*/
 	refreshSession: function(){
 		this.settings.session = {
@@ -160,15 +167,17 @@ var AcakKata = {
 
 	/*
 		Function to get all words used in the game
-		return: list of string - words
+		@params: none
+		@return: list of string - words
 	*/
 	getWords: function(){
 		return this.settings.words;
 	},
 
 	/*
-		Function to set words in the game
-		params: list of string
+		Function to load words to the settings.
+		@params: list of string - words to be loaded on the game
+		@return: none
 	*/
 	setWords: function(words){
 		this.settings.words = words;
@@ -176,8 +185,8 @@ var AcakKata = {
 
 	/*
 		Function to add words in the game
-		params: list of string
-		return: list of string - list of failed to input string
+		@params: list of string
+		@return: list of string - list of failed to input string
 	*/
 	addWords: function(words){
 		fail = [];
@@ -194,8 +203,8 @@ var AcakKata = {
 
 	/*
 		Function to add word in the game
-		params: string
-		return: boolean
+		@params: string
+		@return: boolean
 	*/
 	addWord: function(word){
 		current_words = this.getWords();
