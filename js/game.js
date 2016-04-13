@@ -1,4 +1,8 @@
 var AcakKata = {
+	/*
+		Internal Acak Kata settings responsible for session management
+		and maintaining words and UI element.
+	*/
 	settings: {
 		session: {
 			scrambled: '',
@@ -9,12 +13,22 @@ var AcakKata = {
 		words: [],
 		ui: {},
 	},
+
+	/*
+		Acak Kata init function responsible for initiating the game
+		@params: list of string - list of word used in the game
+	*/
 	init: function(words = []) {
 		this.setWords(words);
 		this.registerUI();
 		this.bindUIActions();
 		this.refreshGame();
 	},
+
+	/*
+		Function which register HTML Dom element into the Acak Kata system
+		for later use.
+	*/
 	registerUI: function() {
 		this.settings.ui.form = $('form');
 		this.settings.ui.question = $('#question');
@@ -22,9 +36,16 @@ var AcakKata = {
 		this.settings.ui.correct = $('#correct');		
 		this.settings.ui.wrong = $('#wrong');	
 	},
+
+	/*
+		Function which bind UI Actions.
+	*/
 	bindUIActions: function() {
 		self = this;
 		ui = this.settings.ui;
+		// On submit, the answer would be captured and checked.
+		// Respective callback function would be called inorder
+		// to give responds to the user
 		ui.form.submit(function(e){
 			user_answer = ui.answer.val();
 			if(self.isCorrectAnswer(user_answer)){
@@ -36,9 +57,19 @@ var AcakKata = {
 			e.preventDefault();
 		});
 	},
+
+	/*
+		Function to load words to the settings.
+		@param: list of string - words to be loaded on the game
+	*/
 	loadWords: function(words) {
 		this.words = words
 	},
+
+	/*
+		Function to generate question.
+		@return: Object - answer and question
+	*/
 	generateQuestion: function() {
 		random_word = this.getRandomWord()
 		return {
@@ -46,26 +77,56 @@ var AcakKata = {
 			question: this.scramble(random_word),
 		};
 	},
+
+	/*
+		Function to generate question.
+		@params: None
+		@return: string - random word
+	*/
 	getRandomWord: function() {
 		words = this.getWords();
 		return words[Math.floor(Math.random() * words.length)];
 	},
+
+	/*
+		Function to scramble text.
+		@param: string - word to be scrambled
+		@return: string - scrambled word
+	*/
 	scramble: function(word) {
 		return word.split('').shuffle().join('');
 	},
+
+	/*
+		Function to check answer.
+		@params: string - word to be checked
+		@return: boolean
+	*/
 	isCorrectAnswer: function(answer) {
 		return this.settings.session.answer == answer;
 	},
+
+	/*
+		Function to give user response on correct answer
+	*/
 	correctAnswerCallback: function(){
 		session = this.settings.session;
 		session.correct += 1;
 		$.notify('Correct!');
 	},
+
+	/*
+		Function to give user response on incorrect answer
+	*/
 	wrongAnswerCallback: function(){
 		session = this.settings.session;
 		session.wrong += 1;
 		$.notify('Wrong!');
 	},
+
+	/*
+		Function to refresh the current game
+	*/
 	refreshGame: function(){
 		ui = this.settings.ui;
 		session = this.settings.session;
@@ -77,6 +138,10 @@ var AcakKata = {
 		ui.correct.html(session.correct);
 		ui.wrong.html(session.wrong);
 	},
+
+	/*
+		Function to refresh the current game session
+	*/
 	refreshSession: function(){
 		this.settings.session = {
 			scrambled: '',
@@ -86,12 +151,28 @@ var AcakKata = {
 		};
 		this.refreshGame();
 	},
+
+	/*
+		Function to get all words used in the game
+		return: list of string - words
+	*/
 	getWords: function(){
 		return this.settings.words;
 	},
+
+	/*
+		Function to set words in the game
+		params: list of string
+	*/
 	setWords: function(words){
 		this.settings.words = words;
 	},
+
+	/*
+		Function to add words in the game
+		params: list of string
+		return: list of string - list of failed to input string
+	*/
 	addWords: function(words){
 		fail = [];
 		for(i in words){
@@ -104,6 +185,12 @@ var AcakKata = {
 		}
 		return fail;
 	},
+
+	/*
+		Function to add word in the game
+		params: string
+		return: boolean
+	*/
 	addWord: function(word){
 		current_words = this.getWords();
 		if(current_words.indexOf(word) > -1){
@@ -114,4 +201,5 @@ var AcakKata = {
 	}
 }
 
+// Initiate Acak Kata game
 AcakKata.init(['aku','kamu','kita','bersama']);
